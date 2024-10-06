@@ -30,7 +30,7 @@ def main():
             ln = int(ln)
             print_factor(ln)
 
-    f.close()
+    fl.close()
 
 
 main()
