@@ -1,40 +1,18 @@
 #!/usr/bin/python3
-import math
+from sys import argv
 
-def print_factor(num):
-    a = 2
-    if (num % a == 0):
-        print("{:d}={:d}*{:d}".format(num, num // a, a))
-
-    a = 3
-    while a < num // 2:
-        if num % a == 0:
-            print("{}={}*{}".format(num, num // a, a))
-            break
-        a = a + 2
-        if a == (num // 2) + 1:
-            print("{}={}*{}".format(num, num, 1))
-
-def main():
-    from sys import argv, exit, stderr
-
-    if len(argv) != 2:
-        stderr.write("Usage: ./factors <file>\n")
-        exit()
-
-    try:
-        f = open(argv[1], "r")
-    except FileNotFoundError:
-        stderr.write("Could not find file {}, not exist\n".format(argv[1]))
-    else:
-        while (True):
-            ln = f.readline()
-            if (not ln):
+with open(argv[1]) as f:
+    for ln in f:
+        n = int(ln)
+        print("{:d}=".format(n), end="")
+        if n % 2 == 0:
+            print("{}*2".format(n//2))
+            continue
+        for a in range(3, n, 2):
+            if n % a == 0:
+                factor = n//a
+                for k in range(3, factor, 2):
+                    if factor % k == 0 or a % k == 0:
+                        break
+                print("{}*{}".format(factor, a))
                 break
-            ln = int(ln)
-            print_factor(ln)
-
-    f.close()
-
-
-main()
