@@ -2,13 +2,13 @@
 import math
 
 def print_factor(num):
-    i = 1
-    while i * i <= num:
-        if num % i == 0:
-            factor = num // i
-            print("{:d} = {:d} * {:d}".format(num, factor, i))
+    a = 1
+    while a * a <= num:
+        if (num % a == 0):
+            factor = num // a
+            print("{:d}={:d}*{:d}".format(num, factor, a))
             break
-        i += 1
+        a += 1
 
 
 def main():
@@ -16,21 +16,21 @@ def main():
 
     if len(argv) != 2:
         stderr.write("Usage: ./factors <file>\n")
-        exit(1)
+        exit()
 
     try:
-        with open(argv[1], "r") as fl:
-            for line in fl:
-                try:
-                    ln = int(line.strip())
-                    print_factor(ln)
-                except ValueError:
-                    stderr.write("Invalid integer in file: {}\n".format(line.strip()))
+        f = open(argv[1], "r")
     except FileNotFoundError:
         stderr.write("Could not find file {}, not exist\n".format(argv[1]))
-        exit(1)
+    else:
+        while (True):
+            ln = f.readline()
+            if (not ln):
+                break
+            ln = int(ln)
+            print_factor(ln)
+
+    f.close()
 
 
-if __name__ == "__main__":
-    main()
-
+main()
