@@ -5,7 +5,7 @@ import math
 
 
 def factory(num):
-    """gets the factors of a number"""
+    """get the factors of a number"""
     if num % 2 == 0:
         i = 2
         print("{}={}*{}".format(num, int(num//i), i))
@@ -24,7 +24,7 @@ def factory(num):
 
 
 def factors(filename):
-    """read_file and prints them out"""
+    """read_file and print them out"""
 
     with open(filename, encoding="utf-8") as my_file:
         for i in my_file.readlines():
