@@ -26,17 +26,29 @@ def print_factor(num):
     if num < 2:
         return  # No factors for numbers less than 2
 
-    # Quick check for small factors
-    if num % 2 == 0:
-        print(f"{num}={num // 2}*2")
-        return
+    # Set threshold for using Pollard's Rho
+    threshold = 10**6  # Adjust this value as needed
 
-    # Pollard's Rho for larger numbers
+    # Quick check for small factors
+    if num < threshold:
+        # Check for small factors
+        if num % 2 == 0:
+            print(f"{num}={num // 2}*2")
+            return
+        
+        for i in range(3, int(math.sqrt(num)) + 1, 2):
+            if num % i == 0:
+                other_factor = num // i
+                print(f"{num}={other_factor}*{i}")
+                return
+
+    # If the number is large or no factors found, use Pollard's Rho
     factor = pollards_rho(num)
     if factor != num:
         print(f"{num}={num // factor}*{factor}")
     else:
-        print(f"{num}={num}*1")  # If no factor is found, it's prime
+        # If still no factor found, it's prime
+        print(f"{num}={num}*1")  # Here, keep this case for primes
 
 def main():
     if len(argv) != 2:
@@ -58,3 +70,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
