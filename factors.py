@@ -2,14 +2,18 @@
 import math
 
 def print_factor(num):
-    a = 1
-    while a * a <= num:
-        if (num % a == 0):
-            factor = num // a
-            print("{:d}={:d}*{:d}".format(num, factor, a))
-            break
-        a += 1
+    a = 2
+    if (num % a == 0):
+        print("{:d}={:d}*{:d}".format(num, num // a, a))
 
+    a = 3
+    while a < num // 2:
+        if num % a == 0:
+            print("{}={}*{}".format(num, num // a, a))
+            break
+        a = a + 2
+        if a == (num // 2) + 1:
+            print("{}={}*{}".format(num, num, 1))
 
 def main():
     from sys import argv, exit, stderr
