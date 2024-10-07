@@ -7,9 +7,9 @@ def print_factor(num):
     for a in range(2, int(num**0.5) + 1):  # Start from 2 and check up to sqrt(num)
         if num % a == 0:
             factor = num // a
-            print("{:d} = {:d} * {:d}".format(num, factor, a))
+            print("{:d}={:d}*{:d}".format(num, factor, a))
             return
-    print("{:d} = {:d} * 1".format(num, num))  # If no factors found, it must be prime
+    print("{:d}={:d}*1".format(num, num))  # If no factors found, it must be prime
 
 
 def main():
